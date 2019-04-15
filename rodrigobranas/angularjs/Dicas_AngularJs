@@ -1,0 +1,37 @@
+Diretivas São extensões da linguagem HTML que permitem a implementação de novos comportamentos,
+de forma declarativa
+
+Diretivas
+    ng-app=Define as fronteiras da aplicação
+        Ao criar um ng-app eu sou obrigado a definir um módulo, caso contrário da erro na aplicação
+    
+    ng-controller 
+        Ao criar um controller, temos que referencia-lo ao módulo e informar o controller
+        {{}} = interpolação da expressão = caso exista erro assim pode ser impresso corretamente, enquanto que 
+               com ng-bind não.
+
+    ng-repeat 
+        Itera sobre os itens de um array
+        Ex.
+        <tr ng-repeat="contato in contatos">
+            <td>{{contato.nome}}</td>
+            <td>{{contato.telefone}}</td>
+        </tr>
+    
+    ngBind = Mostra os dados do $scope na tela(Pega algo do $scope e exibe)
+    ngModel = Inverso do ngBind Ele vincula uma propriedade ao $scope(Pega algo da view e define no $scope)
+        usa-se nos inputs, selects e text-area
+    
+    Two Way Databind
+        O framework percorre todas os elementos que tenham diretivas na inicialização. Quando ele acha uma diretiva
+        do tipo ngmodel, ele  começa a escutar para que sempre que você apertar uma tecla, ele faça duas coisas, ele define
+        isso e atualiza em $scope ele dispara o ciclo de notificação, que alguns tipos de diretivas estão escutando, ex: ng-bind
+        ou interpolação da expressão, ng-repeat. Ou seja, essas diretivas recebem esse aviso e exibem a informação atualizada.
+
+    ngclick
+        Atribui um comportamento ao evento
+        Evite ao máximo ler o $scope estando dentro do controle.
+        Continuar a aula 2 a partir de 24 minutos
+
+
+
