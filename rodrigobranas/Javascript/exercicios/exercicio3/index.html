@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Simple Calculator</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script type="text/javascript" src="calculadora.js"> </script>
+        
+    </head>
+  <body>
+        
+        <div class="container">
+            <div class="jumbotron">
+                <h1 class="display-3">Funções Simples de Calculadora</h1>
+            </div>
+                    
+                <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text" >Valor 1</span>
+                    </div>
+                    <input type="text" class="form-control" id="idvalor1" placeholder="Digite o valor" aria-label="Valor 1" aria-describedby="basic-addon1">
+                </div>  
+                <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text" >Valor 2</span>
+                    </div>
+                    <input type="text" class="form-control" id="idvalor2" placeholder="Digite o valor" aria-label="Valor 2" aria-describedby="basic-addon1">
+                </div>  
+                
+                <div class="input-group mb-4">
+                    <div style="margin-left:25%;">
+                        <button  type="button" class="btn btn-outline-primary" onclick="document.getElementById('idresultado2').innerHTML=somar(idvalor1.value,idvalor2.value);">Adição</button>
+                        <button  type="button" class="btn btn-outline-primary" onclick="document.getElementById('idresultado2').innerHTML=subtrair(idvalor1.value,idvalor2.value);">subtração</button>
+                        <button  type="button" class="btn btn-outline-primary" onclick="document.getElementById('idresultado2').innerHTML=multiplicar(idvalor1.value,idvalor2.value);">Multiplicação</button>
+                        <button  type="button" class="btn btn-outline-primary" onclick="document.getElementById('idresultado2').innerHTML=dividir(idvalor1.value,idvalor2.value);">Divisão</button>
+                    </div>
+                </div>    
+                
+
+                <div class="input-group mb-4">
+                    <h1 style="margin-left:40%;"  id="idresultado2" ></h1>
+                </div>                     
+            </div>
+    
+  </body>
+</html>
