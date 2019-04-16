@@ -1,5 +1,5 @@
 Diretivas São extensões da linguagem HTML que permitem a implementação de novos comportamentos,
-de forma declarativa
+de forma declarativa.
 
 Diretivas
     ng-app=Define as fronteiras da aplicação
@@ -32,6 +32,30 @@ Diretivas
         Atribui um comportamento ao evento
         Evite ao máximo ler o $scope estando dentro do controle.
         Continuar a aula 2 a partir de 24 minutos
+        - Para abrir um two way databind,basta usar o método copy na hora de carregar o array
+            $scope.contatos.push(angular.copy(contato));
+    
+    ngDisable 
+        Habilita ou desabilita os botões de acordo com o preenchimento.
+        ng-disabled="!contato.nome || !contato.telefone" //Caso true desabilita
+        Obs.: Para campos obrigatórios utilizar a diretiva ngRequired
 
+    ngOptions
+        Renderiza as opções de um select(ngRepeat não pega o objeto selecionado)
+        Ex.
+        <select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome for operadora in operadoras">
+                    <option value="">Selecione uma Operadora</option>
+        </select>
+        Detalhamento:
+            O ng-model="contato.operadora" cria uma referência de operadora em contato
+            Enquanto o laço "operadora.nome for operadora in operadoras" variável operadora no objeto operadoras
+            retorna o operadora.nome
+            No angular a interpolação da expressão perdoa valores null e undefined não os exibindo
+            Uma outra opção para o select seria 
+            <select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome group by operadora.categoria for operadora in operadoras">
+                    <option value="">Selecione uma Operadora</option>
+            Os parâmetros operadora.categoria Agrupam por categoria os itens e renderizam na tela.
 
+    ngClass e ngStyle
+        Aplicando classes e estilos dinamicamente
 
