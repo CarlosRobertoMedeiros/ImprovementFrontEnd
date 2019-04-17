@@ -58,4 +58,40 @@ Diretivas
 
     ngClass e ngStyle
         Aplicando classes e estilos dinamicamente
+        <tr ng-class="{selecionado :contato.selecionado, negrito:contato.selecionado}" ng-repeat="contato in contatos">
+                        <!--Lembrar em js null undefined vazio e falso é evaluado para falso -->
+                        <!--Lembrar disso para ajustar o codigo -->
+                        <td><input type="checkbox" ng-model="contato.selecionado"/></td>
+                        <td>{{contato.nome}}</td>
+                        <td>{{contato.telefone}}</td>
+                        <td>{{contato.operadora.nome}}</td>
+                    </tr>
+        O ng-class aplica 2 estilos chamados selecionado e negrito.
+        em casos de string pode-se fazer um hack no js e ficaria assim ng-class="{'selecionado negrito' :contato.selecionado, :contato.selecionado}
+        o ngstyle modifica o codigo js //não implementei o exemplo, porém era criar um atributo para modificacao de cor de maneira dinâmica
+
+    ngShow, ngHide e ngIF
+        Exibindo um elemento condificionalmente
+        ng-show //mostra se alguma condição existir
+            ng-show="isContatoSelecionado(contatos);"
+        ng-hide //oculta se alguma condição existir
+            ng-hide="!isContatoSelecionado(contatos);"
+        o ng-show e ng-hide trabalham apenas na visibilidade do elemento, eles apenas manipulam a dom colocando 
+        uma div para executar um display:none
+
+        o ng-if interage com a dom removendo o elemento 
+
+    ng-include 
+        inclui conteúdo dinamicamente
+        Para incluir um rodapé
+    
+    Validação de Formulários
+        tem que ser colocado dentro de um form
+        ngRequired define um determinado campo como obrigatório
+            após habilitar o ngRequired eu tenho acesso ao $valid e $invalid de um Formulários
+            $valid e $invalid = Consulta a validade de um campo ou formulário
+            $pristine e dirty = Verifica se um formulário ou campo já foi utilizado alguma vez.
+
+
+
 

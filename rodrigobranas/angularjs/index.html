@@ -24,6 +24,14 @@
         .form-control{
             margin-bottom:5px; 
         }
+
+        .selecionado{
+            background-color: yellow;
+        }
+
+        .negrito{
+            font-weight: bold;
+        }
     
     </style>
 
@@ -53,6 +61,21 @@
                 delete $scope.contato; //Limpa do objeto o valor através de js
             }
 
+            $scope.apagarContatos= function(contatos){
+                //Estudar a função filter do js Desvendando a linguagem js episódio 8
+                $scope.contatos = contatos.filter(function(contato){
+                    if(!contato.selecionado) return contato;
+                });
+
+            };
+            
+            $scope.isContatoSelecionado = function(contatos){
+                   return contatos.some(function(contato){
+                        return contato.selecionado;
+                   }) ;
+            };
+
+
         });
 
     </script>
@@ -63,13 +86,16 @@
         <div class="container">
             <div class="jumbotron">
                 <h4>{{app}}</h4>
-                <table class="table table-striped" >
+                <table class="table" ng-show="contatos.length" >
                     <tr>
                         <th>Nome</th>
                         <th>Telefone</th>
                         <th>Operadora</th>
                     </tr>
-                    <tr ng-repeat="contato in contatos">
+                    <tr ng-class="{'selecionado negrito' :contato.selecionado}" ng-repeat="contato in contatos">
+                        <!--Lembrar em js null undefined vazio e falso é evaluado para falso -->
+                        <!--Lembrar disso para ajustar o codigo -->
+                        <td><input type="checkbox" ng-model="contato.selecionado"/></td>
                         <td>{{contato.nome}}</td>
                         <td>{{contato.telefone}}</td>
                         <td>{{contato.operadora.nome}}</td>
@@ -78,21 +104,36 @@
                 </table>
                 <hr/>
 
-                <input class="form-control" type="text" ng-model="contato.nome" placeholder="Nome" />
-                <input class="form-control" type="text" ng-model="contato.telefone" placeholder="Telefone" />
-                
-                <select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome group by operadora.categoria for operadora in operadoras">
-                    <option value="">Selecione uma Operadora</option> <!--Não permite Inserir o objeto-->
-                </select>
+                é valido {{contatoForm.$valid}}
+                é invalido{{contatoForm.$invalid}}
 
-                <button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="!contato.nome || !contato.telefone">Adicionar Contato</button>
-                <!-- Continuar a aula 3 a Partir de 18 minutos-->
+                <form name="contatoForm">
+                    <input class="form-control" type="text" ng-model="contato.nome" name="nome" placeholder="Nome" ng-required="true" />
+                    <input class="form-control" type="text" ng-model="contato.telefone" name="telefone" placeholder="Telefone" ng-required="true" />
+                    
+                    <select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome group by operadora.categoria for operadora in operadoras">
+                        <option value="">Selecione uma Operadora</option> <!--Não permite Inserir o objeto-->
+                    </select>
+                </form>
+                <div ng-show="contatoForm.nome.$invalid" class="alert alert-danger">
+                    Por favor, preencha o campo nome!
+                </div>
+                <div ng-show="contatoForm.telefone.$invalid" class="alert alert-danger">
+                        Por favor, preencha o campo telefone!
+                    </div>
+
+                <button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="contatoForm.$invalid">Adicionar Contato</button>
+                <button class="btn btn-danger btn-block" ng-click="apagarContatos(contatos)" ng-show="isContatoSelecionado(contatos);">Apagar Contatos</button>
+                <!-- Continuar a aula 4 a Partir de 10 minutos-->
                 {{contato}}
 
             </div> <!-- Fim da Div do Jumbotron-->
         </div> <!-- Fim da Div Container-->
+        <div ng-include="'footer.html'">
+
+        </div>
       
-    
+        
 
   </body>
 </html>
