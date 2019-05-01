@@ -87,10 +87,75 @@ Diretivas
     
     Validação de Formulários
         tem que ser colocado dentro de um form
-        ngRequired define um determinado campo como obrigatório
+        ng-required define um determinado campo como obrigatório
             após habilitar o ngRequired eu tenho acesso ao $valid e $invalid de um Formulários
             $valid e $invalid = Consulta a validade de um campo ou formulário
             $pristine e dirty = Verifica se um formulário ou campo já foi utilizado alguma vez.
+        ng-minlength e ng-maxlength define o tamanho máximo e mínimo permitido
+            - (não é uma mascara, apenas uma validação)  
+        $error
+            - Consultando os erros de um campo ou formulário
+        ngPattern
+            - Define uma RegExp para validar o campo 
+
+        //Essa lib ngMessages ela é externa ao angularjs, tendo que inserir os valores
+        ngMessages = Serve para melhoras a validações com menos erros de visibilidade
+        Ex.
+        <div ng-messages="contatoForm.nome.$error" class="alert alert-danger">
+            <div ng-message="required">
+                Por favor, preencha o campo nome!
+            </div>
+
+            <div ng-message="minlength">
+                O campo nome deve ter no mínimo 10 caracteres.
+            </div>
+        </div> <!--Fecha ng-messages do contatoForm.nome-->
+
+    Filtros
+        Os filtros nem sempre filtram. 
+        Transformam o resultado de uma expressão, realizando operações como a 
+        formatação de data, a conversão de moeda e a ordenação de array.
+        i18n = Arquivo de localização que já vem disponível no arquivo que você baixa
+               Formatando a moeda nos tipos desejados.
+        
+        Filtro uppercase / lowercase
+        mesma idéia do unix ele aplica um filtro sem alterar os dados originais
+        <tr ng-class="{'selecionado negrito' :contato.selecionado}" ng-repeat="contato in contatos">
+                        <!--Lembrar em js null undefined vazio e falso é evaluado para falso -->
+                        <!--Lembrar disso para ajustar o codigo -->
+                        <td>{{contato.nome | uppercase}}</td>
+        </tr>
+        Filtro de Data
+            //Entre '' é a mascara
+            <td>{{contato.data | date:'dd/MM/yyyy HH:mm'}}</td>
+
+        Filtro Filter 
+            Filtra um array com base em um critério
+            Normalmente usa-se para buscar
+            Exemplo aplicado no ng-repeat
+                ng-repeat="contato in contatos | filter:criteriodeBusca" o criteriodeBusca é ng-model
+                Usando assim apenas para utilizar uma pesquisa por qualquer filtro
+                Caso queira incluir uma pesquisa por um atributo especifico utiliza-se assim
+                    ng-repeat="contato in contatos | filter:criteriodeBusca" o {nome:criteriodeBusca} é ng-model
+            Filtro orderBy                    
+                Ordena um array com base em um critério
+                Exemplo
+                ng-repeat="contato in contatos | filter:criteriodeBusca | orderBy:'nome'"
+                Outro parâmetro 
+                //Esse true indica ao filtro utilizar a ordem descendente e false a ordem ascendente
+                //Sendo que false já é o padrão
+                ng-repeat="contato in contatos | filter:criteriodeBusca | orderBy:'nome':true"
+            Filtro currency
+                Converte um número para uma moeda
+                Continuar na aula 5 aos 15:20
+
+
+
+
+
+
+
+
 
 
 

@@ -37,14 +37,15 @@
 
     <!-- Scripts -->
     <script src="lib/angular/angular.min.js"></script>
+    <script src="lib/angular/angular-messages.min.js"></script>
     <script>
-        angular.module("listaTelefonica",[]);
+        angular.module("listaTelefonica",["ngMessages"]);
         angular.module("listaTelefonica").controller('listaTelefonicaController',function($scope){
             $scope.app="Lista Telefônica";
             $scope.contatos = [
-                {nome:"Pedro", telefone:"99998888"},
-                {nome:"Ana", telefone:"99998877"},
-                {nome:"Maria", telefone:"99998866"}
+                {nome:"Pedro", telefone:"99998888", data: new Date(), operadora:{nome:"Oi",codigo:"14",categoria:"Celular"}},
+                {nome:"Ana", telefone:"99998877", data: new Date(), operadora:{nome:"Vivo",codigo:"15",categoria:"Celular"}},
+                {nome:"Maria", telefone:"99998866", data: new Date(), operadora:{nome:"Tim",codigo:"41",categoria:"Fixo"}}
                 
             ];
 
@@ -59,6 +60,10 @@
             $scope.adicionarContato = function(contato){
                 $scope.contatos.push(angular.copy(contato));
                 delete $scope.contato; //Limpa do objeto o valor através de js
+                $scope.contatoForm.$setPristine(); //Eu sempre volto o contato form ao
+                                                  //pristine para gerenciar melhor as 
+                                                  //mensagens  
+
             }
 
             $scope.apagarContatos= function(contatos){
@@ -75,6 +80,10 @@
                    }) ;
             };
 
+            $scope.ordenarPor = function(campo){
+              $scope.criteriodeOrdenacao = campo; 
+              $scope.direcaoDaOrdenacao = !$scope.direcaoDaOrdenacao;//Sempre inverte o valor
+            };
 
         });
 
@@ -86,19 +95,25 @@
         <div class="container">
             <div class="jumbotron">
                 <h4>{{app}}</h4>
-                <table class="table" ng-show="contatos.length" >
+                
+                <input class="form-control" type="text" ng-model="criteriodeBusca" placeholder="O que você está buscando?">
+                
+                <table class="table table-striped" ng-show="contatos.length" >
                     <tr>
-                        <th>Nome</th>
-                        <th>Telefone</th>
+                        <th></th>
+                        <th><a href="" ng-click="ordenarPor('nome')">Nome</a></th>
+                        <th><a href="" ng-click="ordenarPor('telefone')">Telefone</a></th>
+                        <th>Data</th>
                         <th>Operadora</th>
                     </tr>
-                    <tr ng-class="{'selecionado negrito' :contato.selecionado}" ng-repeat="contato in contatos">
+                    <tr ng-class="{'selecionado negrito' :contato.selecionado}" ng-repeat="contato in contatos | filter:criteriodeBusca | orderBy:criteriodeOrdenacao:direcaoDaOrdenacao">
                         <!--Lembrar em js null undefined vazio e falso é evaluado para falso -->
                         <!--Lembrar disso para ajustar o codigo -->
                         <td><input type="checkbox" ng-model="contato.selecionado"/></td>
-                        <td>{{contato.nome}}</td>
+                        <td>{{contato.nome | uppercase}}</td>
                         <td>{{contato.telefone}}</td>
-                        <td>{{contato.operadora.nome}}</td>
+                        <td>{{contato.data | date:'dd/MM/yyyy HH:mm'}}</td>
+                        <td>{{contato.operadora.nome | lowercase}}</td>
                     </tr>
 
                 </table>
@@ -108,19 +123,31 @@
                 é invalido{{contatoForm.$invalid}}
 
                 <form name="contatoForm">
-                    <input class="form-control" type="text" ng-model="contato.nome" name="nome" placeholder="Nome" ng-required="true" />
-                    <input class="form-control" type="text" ng-model="contato.telefone" name="telefone" placeholder="Telefone" ng-required="true" />
+                    <input class="form-control" type="text" ng-model="contato.nome" name="nome" placeholder="Nome" ng-required="true" ng-minlength="10" />
+                    <input class="form-control" type="text" ng-model="contato.telefone" name="telefone" placeholder="Telefone" ng-required="true" ng-pattern="/^\d{4,5}-\d{4}$/"/>
                     
-                    <select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome group by operadora.categoria for operadora in operadoras">
+                    <select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome group by operadora.categoria for operadora in operadoras | orderBy:'nome'">
                         <option value="">Selecione uma Operadora</option> <!--Não permite Inserir o objeto-->
                     </select>
                 </form>
-                <div ng-show="contatoForm.nome.$invalid" class="alert alert-danger">
-                    Por favor, preencha o campo nome!
-                </div>
-                <div ng-show="contatoForm.telefone.$invalid" class="alert alert-danger">
-                        Por favor, preencha o campo telefone!
+                
+                <div ng-show="contatoForm.nome.$dirty" ng-messages="contatoForm.nome.$error" class="alert alert-danger">
+                    <div ng-message="required" >
+                        Por favor, preencha o campo nome!
                     </div>
+
+                    <div ng-message="minlength">
+                        O campo nome deve ter no mínimo 10 caracteres.
+                    </div>
+                </div> <!--Fecha ng-messages do contatoForm.nome-->
+
+                <div ng-show="contatoForm.telefone.$error.required && contatoForm.nome.$dirty" class="alert alert-danger">
+                    Por favor, preencha o campo telefone!
+                </div>
+
+                <div ng-show="contatoForm.telefone.$error.pattern" class="alert alert-danger">
+                    O campo telefone deve ter o formato DDDDD-DDDD ou DDDD-DDDD 
+                </div>
 
                 <button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="contatoForm.$invalid">Adicionar Contato</button>
                 <button class="btn btn-danger btn-block" ng-click="apagarContatos(contatos)" ng-show="isContatoSelecionado(contatos);">Apagar Contatos</button>
