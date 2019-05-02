@@ -147,7 +147,63 @@ Diretivas
                 ng-repeat="contato in contatos | filter:criteriodeBusca | orderBy:'nome':true"
             Filtro currency
                 Converte um número para uma moeda
-                Continuar na aula 5 aos 15:20
+                Importação do arquivo i18n de localização(ptbr)
+                Ex.:
+                ng-options="operadora.nome +' ( '+(operadora.preco | currency) +' ) ' for operadora in operadoras | orderBy:'nome'"
+
+            Filtro number
+                Formata um número 
+                O number:1 // é o fraction size, número da fração
+                Ex.: {{100.96 | number:1}} //Arredonda com  1 casa
+            
+            Filtro limitTo
+                Limita um array ou uma String
+                No exemplo abaixo eu limitei em 3 caracteres o campo nome do contato
+                Ex.:
+                <td>{{contato.nome | uppercase | limitTo:3}}</td>
+
+                COM RELAÇÃO AOS FILTROS TOMAR CUIDADO EM SUA APLICAÇÃO NA VIEW DEVIDO A PERFORMANCE
+                SÃO MUITAS AÇÕES QUE A FRAMEWORK TOMA AO UTILIZAR A VIEW
+                OS FILTROS APLICADOS EM TELA ELES SÃO SEMPRE REAVALIADOS
+                  - Profiling em chrome batarang 
+
+                Pensando em performance (dentro do possível )é melhor aplicar filtros nos controles.
+                Exemplo 1
+                    Insira após o o $scope o parâmetro $filter
+                    {nome:$filter('uppercase')("Pedro"), telefone:"99998888", data: new Date(), operadora:{nome:"Oi",codigo:"14",categoria:"Celular"}},
+                Exemplo 2                     
+                    Insira após o o $scope o parâmetro uppercaseFilter
+                    //o uppercasefilter é uma function
+                    {nome:uppercaseFilter("Pedro"), telefone:"99998888", data: new Date(), operadora:{nome:"Oi",codigo:"14",categoria:"Celular"}},
+
+    Integração com BackEnd
+                $http = O serviço http do Angular, permite a realização de requisições utilizando
+                XMLHttpRequest via JSONP
+                    -get(url,config)
+                    -post(url,data,config)
+                    -put(url,data,config)
+                    -delete(url,config) 
+                    -head(url,config)
+                    -jsonp(url,config)
+
+                - Exclui a lista criada através do array de contatos
+                - injeta o http
+                Ex.:
+                    var carragarContatos = function(){
+                    $http.get("").success(function(data,status){
+                        $scope.contatos = data;                        
+                                        });
+                    };
+
+
+                Continuar de 20 minutos -- verificar inicialmente se existe um serviço
+                para utilização da lista de contatos nos comentários do youtube.
+                A aplicação está dando erro devido a criação dos contatos
+
+
+
+
+                Continuar na aula 6 aos 15:20
 
 
 
