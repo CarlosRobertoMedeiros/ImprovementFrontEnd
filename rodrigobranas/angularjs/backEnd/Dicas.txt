@@ -1,0 +1,2 @@
+Foi necessário realizar a configuração de timeZone para corrigir datas
+Continuar no 3.2 do https://www.algaworks.com/aulas/1464/conectando-ao-mysql/ a partir dos 4:14
