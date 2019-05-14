@@ -2,7 +2,7 @@ package com.roberto.listatelefonica.api.resource;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
+import java.util.NoSuchElementException;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -54,8 +54,22 @@ public class OperadoraTelefoneCategoriaResource {
 	
 	//Associação do código da requisição ao código do getmapping
 	@GetMapping("/{codigo}")
-	public Optional<OperadoraTelefoneCategoria> buscarPeloCodigo(@PathVariable Long codigo) {
-		return operadoraTelefoneCategoriaRepository.findById(codigo);
+	public ResponseEntity<Object> buscarPeloCodigo(@PathVariable Long codigo) {
+		
+		try {
+		OperadoraTelefoneCategoria operadoraTelefoneCategoriaRepositorySalva = operadoraTelefoneCategoriaRepository.findById(codigo).get();
+		
+		URI uri =  ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{codigo}")
+				.buildAndExpand(operadoraTelefoneCategoriaRepositorySalva.getCodigo()).toUri();
+		
+		return ResponseEntity.created(uri).body(operadoraTelefoneCategoriaRepositorySalva);
+		
+		}catch (NoSuchElementException e) {
+			return ResponseEntity.notFound().build();
+		}
+		
+		
+		
 	}
 	
 }
@@ -63,6 +77,6 @@ public class OperadoraTelefoneCategoriaResource {
 //Continuar a aula no inicio do video 3.7
 //Desafio: Retornar 404 Caso Não exista a categoria
 //Fiz a mudança do jpaRepository para o crudrepository
-
+//A FK não travou a inserção no V0002 = verificar 
 
 

@@ -14,7 +14,7 @@ public class OperadoraTelefoneCategoria {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long codigo;
+	private Long codigo;
 
 	@NotBlank
 	@Size(min=1, max= 50)
@@ -24,7 +24,7 @@ public class OperadoraTelefoneCategoria {
 		return codigo;
 	}
 
-	public void setCodigo(long codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 
