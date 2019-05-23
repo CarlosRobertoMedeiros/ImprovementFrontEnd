@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -21,8 +21,8 @@ public class Aluno {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotBlank
-	@Size(min = 5, max = 50, message = "O campo é obrigatório e deve conter entre 5 e 50 caracteres")
+	@NotNull
+	@Size(min = 5, max = 50 , message = "O nome é obrigatório e seu tamanho deve estar entre {min} e {max}")
 	private String nome;
 
 	@Column(name = "numeropassaporte")
