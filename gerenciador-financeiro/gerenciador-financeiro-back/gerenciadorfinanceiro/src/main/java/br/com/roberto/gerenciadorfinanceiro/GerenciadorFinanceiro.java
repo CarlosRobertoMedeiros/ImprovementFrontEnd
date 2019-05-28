@@ -12,4 +12,4 @@ public class GerenciadorFinanceiro {
 
 }
 
-//Continuar do video 3.10 - Minuto 13
+//Verificar a dúvida no vídeo da aula 3.10

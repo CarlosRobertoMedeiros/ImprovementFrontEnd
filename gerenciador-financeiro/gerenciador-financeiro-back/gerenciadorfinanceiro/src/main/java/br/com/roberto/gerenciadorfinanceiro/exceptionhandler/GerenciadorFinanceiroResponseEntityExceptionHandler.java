@@ -40,9 +40,6 @@ public class GerenciadorFinanceiroResponseEntityExceptionHandler extends Respons
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
 		
-		String mensagemUsuario = messageSource.getMessage("mensagem.invalida", null,LocaleContextHolder.getLocale());
-		String mensagemDesenvolvedor = ex.getCause().toString();
-		
 		List<Erro> erros = criarListaDeErros(ex.getBindingResult());
 		return handleExceptionInternal(ex, erros, headers, HttpStatus.BAD_REQUEST, request);
 	}
@@ -60,7 +57,7 @@ public class GerenciadorFinanceiroResponseEntityExceptionHandler extends Respons
 		return erros;
 	}
 	
-	private static class Erro {
+	public static class Erro {
 		private String mensagemUsuario;
 		private String mensagemDesenvolvedor;
 		
