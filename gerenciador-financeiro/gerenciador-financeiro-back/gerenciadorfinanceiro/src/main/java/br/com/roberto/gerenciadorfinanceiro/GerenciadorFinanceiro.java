@@ -12,4 +12,7 @@ public class GerenciadorFinanceiro {
 
 }
 
-//Verificar a dúvida no vídeo da aula 3.10
+//Verificar a dúvida no ví 2deo da aula 3.10
+//Iniciar o video 4.4. Implementando atualização parcial com PUT
+//Tem que corrigir o seguinte erro
+//  - Ao solicitar o put de um código inexistente gera exceção "java.util.NoSuchElementException: No value present"
