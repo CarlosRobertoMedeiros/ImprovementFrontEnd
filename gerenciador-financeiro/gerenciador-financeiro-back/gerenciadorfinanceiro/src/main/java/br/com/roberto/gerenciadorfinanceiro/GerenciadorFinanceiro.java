@@ -15,4 +15,5 @@ public class GerenciadorFinanceiro {
 //Verificar a dúvida no ví 2deo da aula 3.10
 //Continuar do 5.3. Desafio: Cadastrando o primeiro lançamento
 // O código está implementado, porém não estou sabendo fazer o post corretamente
-// Ao concluir isso prosseguir o curso no 5.4
+// Continuar no 5.7 --Pesquisa de Lancamento com MetaModel JPA --Continuar o código a partir da aula 5.7
+//                  --Continuar a Partir dos 10 minutos, o software está dando erro

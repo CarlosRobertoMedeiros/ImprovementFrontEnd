@@ -1,5 +1,7 @@
 package br.com.roberto.gerenciadorfinanceiro.model;
 
+import java.beans.Transient;
+
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tb_pessoa")
@@ -57,6 +61,13 @@ public class Pessoa {
 		this.endereco = endereco;
 	}
 
+	
+	@JsonIgnore
+	@Transient
+	public boolean isAtivo(){
+		return this.ativo;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
