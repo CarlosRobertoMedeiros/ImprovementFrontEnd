@@ -17,7 +17,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.util.StringUtils;
 
 import br.com.roberto.gerenciadorfinanceiro.model.Lancamento;
-import br.com.roberto.gerenciadorfinanceiro.model.Lancamento_;
 import br.com.roberto.gerenciadorfinanceiro.repository.filter.LancamentoFilter;
 
 public class LancamentoRepositoryImpl implements LancamentoRepositoryQuery {
@@ -46,17 +45,17 @@ public class LancamentoRepositoryImpl implements LancamentoRepositoryQuery {
 		List<Predicate> predicates = new ArrayList<>();
 
 		if (!StringUtils.isEmpty(lancamentoFilter.getDescricao())) {
-			predicates.add(builder.like(builder.lower(root.get(Lancamento_.descricao)),
+			predicates.add(builder.like(builder.lower(root.get("descricao")),
 					"%" + lancamentoFilter.getDescricao().toLowerCase() + "%"));
 		}
 
 		if (lancamentoFilter.getDataVencimentoDe() != null) {
-			predicates.add(builder.greaterThanOrEqualTo(root.get(Lancamento_.dataVencimento),
+			predicates.add(builder.greaterThanOrEqualTo(root.get("dataVencimento"),
 					lancamentoFilter.getDataVencimentoDe()));
 		}
 
 		if (lancamentoFilter.getDataVencimentoAte() != null) {
-			predicates.add(builder.lessThanOrEqualTo(root.get(Lancamento_.dataVencimento),
+			predicates.add(builder.lessThanOrEqualTo(root.get("dataVencimento"),
 					lancamentoFilter.getDataVencimentoAte()));
 
 		}
