@@ -25,10 +25,11 @@ public class GerenciadorFinanceiro {
 // Verificar a dúvida no vídeo da aula 3.10
 // Continuar do 5.3. Desafio: Cadastrando o primeiro lançamento
 // O Código está implementado, porém não estou sabendo fazer o post corretamente
-// Continuar no 6.3. Implementando segurança com OAuth 2 e Password Flow
+// Continuar no 6.6 Renovando o access token com o refresh token a partir de 2:57
 // XXXXXXXXXXXXXXXX -- Continuar a Partir dos 10 minutos, o software está dando erro
 // Utilizando a Autenticação
     //Senha com Basic
+
 
 //Utilizando OAuth2
     // user
