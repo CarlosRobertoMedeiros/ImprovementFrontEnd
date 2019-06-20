@@ -25,7 +25,7 @@ public class GerenciadorFinanceiro {
 // Verificar a dúvida no vídeo da aula 3.10
 // Continuar do 5.3. Desafio: Cadastrando o primeiro lançamento
 // O Código está implementado, porém não estou sabendo fazer o post corretamente
-// Continuar no 6.6 Renovando o access token com o refresh token a partir de 2:57
+// Continuar no 6.8 - Movendo o refresh token do cookie para a requisição
 // XXXXXXXXXXXXXXXX -- Continuar a Partir dos 10 minutos, o software está dando erro
 // Utilizando a Autenticação
     //Senha com Basic
