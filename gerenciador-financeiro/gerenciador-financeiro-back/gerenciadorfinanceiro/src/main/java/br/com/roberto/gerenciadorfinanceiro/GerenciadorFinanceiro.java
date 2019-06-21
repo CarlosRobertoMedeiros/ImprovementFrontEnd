@@ -20,6 +20,22 @@ public class GerenciadorFinanceiro {
 	void started() {
 		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
 	}
+	
+	
+	//TODO:Aplicando a liberação de CrossOrigin a todo o projeto
+	//Ele ainda não está legal ao usar oauth2 por isso está desabilitado
+	//Por enquanto o melhor é criar um filtro para implementar o cors 
+	/*@Bean
+	public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/*").allowedOrigins("http://localhost:8000");
+            }
+        };
+    }*/
+	
+	
 }
 
 // Verificar a dúvida no vídeo da aula 3.10
@@ -32,7 +48,7 @@ public class GerenciadorFinanceiro {
 
 
 //Utilizando OAuth2
-    // user
+    // 	user
 	// client
     // autorization server
 	//	    - Envia o Token para o client
