@@ -6,8 +6,12 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+
+import br.com.roberto.gerenciadorfinanceiro.config.property.GerenciadorFinanceiroApiProperty;
 
 @SpringBootApplication
+@EnableConfigurationProperties(GerenciadorFinanceiroApiProperty.class)
 public class GerenciadorFinanceiro {
 
 	public static void main(String[] args) {
