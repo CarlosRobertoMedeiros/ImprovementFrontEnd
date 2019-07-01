@@ -1,0 +1,20 @@
+   - Pré Requisitos
+	- Conta no Heroku criada;
+	- Git Instalado;
+	- Baixar e instalar o executável heroku-cli(cmd) 
+
+   - Após criar uma conta no Heroku
+  	- Entrar na pasta do projeto que já esta usando git
+	- Criar um repositório pessoal no Heroku através do comando
+		- create <<nomeprojeto>>
+		- O Heroku retorna as urls criadas
+			- Ex.  Para acessar a App: https://gerenciadorfinanceiro-api.herokuapp.com/ 
+			       Para acessar o Git: https://git.heroku.com/gerenciadorfinanceiro-api.git
+		- Tem que adicionar informações de Cartão de Crédito no Heroku
+		- Adicionando os addons
+			- Prvisionando o banco de dados mysql
+			- addon gratuito para mysql: heroku addons:create jawsdb
+				Ex. Criado - Created jawsdb-dimensional-54914 as JAWSDB_URL
+				Para verificar o caminho da configuração
+					heroku config:get JAWSDB_URL
+		

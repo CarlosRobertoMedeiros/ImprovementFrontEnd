@@ -45,7 +45,7 @@ public class GerenciadorFinanceiro {
 // Verificar a dúvida no vídeo da aula 3.10
 // Continuar do 5.3. Desafio: Cadastrando o primeiro lançamento
 // O Código está implementado, porém não estou sabendo fazer o post corretamente
-// Continuar no 6.12 - Adicionando Permissões de Acesso
+// Continuar no 7.4  - a Partir do minuto 6:30
 
 //Utilizando OAuth2
     // 	user
