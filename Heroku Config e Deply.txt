@@ -17,4 +17,5 @@
 				Ex. Criado - Created jawsdb-dimensional-54914 as JAWSDB_URL
 				Para verificar o caminho da configuração
 					heroku config:get JAWSDB_URL
+					
 		
