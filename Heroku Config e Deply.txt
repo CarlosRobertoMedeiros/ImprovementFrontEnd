@@ -17,5 +17,13 @@
 				Ex. Criado - Created jawsdb-dimensional-54914 as JAWSDB_URL
 				Para verificar o caminho da configuração
 					heroku config:get JAWSDB_URL
+					Retorno: mysql://t66p13mxdsgkdhs3:wihkhwp3msp0nzm5@k2pdcy98kpcsweia.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/xd6sdpnm4mipfjak
+				Para configurar o caminho
+					heroku config:set JDBC_DATABASE_URL=jdbc:mysql://k2pdcy98kpcsweia.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/xd6sdpnm4mipfjak
+					heroku config:set JDBC_DATABASE_USERNAME=t66p13mxdsgkdhs3
+					heroku config:set JDBC_DATABASE_PASSWORD=wihkhwp3msp0nzm5
+					O comando heroku config mostra todas as configurações de uma vez
+					
+					
 					
 		
