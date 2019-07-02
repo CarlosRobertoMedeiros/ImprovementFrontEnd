@@ -23,6 +23,7 @@
 					heroku config:set JDBC_DATABASE_USERNAME=t66p13mxdsgkdhs3
 					heroku config:set JDBC_DATABASE_PASSWORD=wihkhwp3msp0nzm5
 					O comando heroku config mostra todas as configurações de uma vez
+					heroku logs --tail
 					
 					
 					
